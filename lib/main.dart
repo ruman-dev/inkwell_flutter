@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/core/routes/app_pages.dart';
 import 'package:inkwell/core/routes/app_routes.dart';
@@ -7,13 +9,19 @@ import 'package:inkwell/core/themes/app_themes.dart';
 import 'package:inkwell/firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  final user = FirebaseAuth.instance.currentUser;
+  final String initialRoute = user != null ? AppRoutes.home : AppRoutes.auth;
+  runApp(MyApp(initialRoute: initialRoute));
+
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppThemes.darkTheme,
       themeMode: ThemeMode.dark,
-      initialRoute: AppRoutes.auth,
+      initialRoute: initialRoute,
       getPages: pages,
     );
   }

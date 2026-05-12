@@ -63,4 +63,9 @@ class AuthRepositoryImpl implements AuthRepository {
       return Right(Failure(message: "Something went wrong. Please try again."));
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }

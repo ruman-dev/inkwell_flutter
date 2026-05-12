@@ -65,6 +65,11 @@ class AuthController extends GetxController {
     );
   }
 
+  Future<void> signOut() async {
+    await AuthRepositoryImpl().signOut();
+    Get.offAllNamed(AppRoutes.auth);
+  }
+
   @override
   void dispose() {
     emailController.dispose();

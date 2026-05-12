@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/core/routes/app_routes.dart';
+import 'package:inkwell/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:inkwell/features/home/presentation/controllers/home_controller.dart';
 
 class HomeScreen extends GetView<HomeController> {
@@ -42,6 +43,16 @@ class HomeScreen extends GetView<HomeController> {
                         ),
                       ),
                     ],
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      if (!Get.isRegistered<AuthController>()) {
+                        Get.put(AuthController()).signOut();
+                      } else {
+                        Get.find<AuthController>().signOut();
+                      }
+                    },
+                    icon: const Icon(Icons.logout_rounded, color: Colors.white),
                   ),
                 ],
               ),
