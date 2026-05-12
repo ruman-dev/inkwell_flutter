@@ -53,6 +53,12 @@ This project follows **Clean Architecture** principles to ensure scalability, ma
    flutter run
    ```
 
+## 🎥 App Preview
+
+[![Watch Inkwell Demo](https://img.youtube.com/vi/msb7f7dIAU4/maxresdefault.jpg)](https://youtube.com/shorts/msb7f7dIAU4)
+
+> Click the preview above to watch the app demo.
+
 ## 📂 Project Structure
 
 ```text
