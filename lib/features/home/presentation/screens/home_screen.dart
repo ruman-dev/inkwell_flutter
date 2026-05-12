@@ -43,19 +43,6 @@ class HomeScreen extends GetView<HomeController> {
                       ),
                     ],
                   ),
-
-                  Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1B1C20),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Icon(
-                      Icons.search_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
                 ],
               ),
 
