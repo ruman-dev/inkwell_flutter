@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12617616534",
+    "project_id": "inkwell---note-taking-app",
+    "storage_bucket": "inkwell---note-taking-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12617616534:android:e0f8467130c8d86b1b06b7",
+        "android_client_info": {
+          "package_name": "com.example.inkwell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2dsEIHICCE2IPFsCj4LTqlxI9sBg7mTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
