@@ -109,6 +109,7 @@ class AuthScreen extends GetView<AuthController> {
                           controller.isPasswordHidden.value
                               ? Icons.visibility_off_rounded
                               : Icons.visibility_rounded,
+                          color: Colors.grey.shade400,
                         ),
                       ),
                     ),

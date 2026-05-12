@@ -42,12 +42,7 @@ class AddNewTaskScreen extends GetView<AddNewTaskController> {
 
               TextFormField(
                 controller: controller.titleController,
-                decoration: const InputDecoration(
-                  hintText: 'Enter task title',
-                  prefixIcon: Icon(Icons.title_rounded),
-                  filled: true,
-                  fillColor: Colors.white,
-                ),
+                decoration: const InputDecoration(hintText: 'Enter task title'),
               ),
 
               const SizedBox(height: 24),
@@ -67,11 +62,8 @@ class AddNewTaskScreen extends GetView<AddNewTaskController> {
                 controller: controller.descriptionController,
                 decoration: const InputDecoration(
                   hintText: 'Write task description...',
-                  prefixIcon: Icon(Icons.notes_rounded),
-                  filled: true,
-                  fillColor: Colors.white,
                 ),
-                maxLines: 6,
+                maxLines: 4,
               ),
 
               const SizedBox(height: 24),
@@ -150,10 +142,7 @@ class AddNewTaskScreen extends GetView<AddNewTaskController> {
 
               /// Save Button
               ElevatedButton(
-                onPressed: () {
-                  /// Save Task Logic
-                  Get.back();
-                },
+                onPressed: () => Get.back(),
                 child: const Text(
                   'Create Task',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
