@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppThemes {
@@ -13,6 +14,7 @@ class AppThemes {
         onPrimary: Colors.black,
         surface: Color(0xFF1D1E22),
         secondary: Colors.grey,
+        error: Colors.redAccent,
       ),
 
       /// Typography
@@ -24,10 +26,7 @@ class AppThemes {
           letterSpacing: -.5,
         ),
         bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
-        bodyMedium: TextStyle(
-          color: Color(0xFF9E9E9E), // Colors.grey.shade500
-          fontSize: 15,
-        ),
+        bodyMedium: TextStyle(color: Color(0xFF9E9E9E), fontSize: 15),
       ),
 
       /// Input Decoration
@@ -65,9 +64,14 @@ class AppThemes {
             borderRadius: BorderRadius.circular(18),
           ),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          disabledBackgroundColor: Colors.grey.withValues(alpha: .5),
+          disabledForegroundColor: Colors.white.withValues(alpha: .5),
         ),
       ),
-
+      cupertinoOverrideTheme: const CupertinoThemeData(
+        primaryColor: Colors.white,
+        brightness: Brightness.dark,
+      ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: Colors.white.withValues(alpha: .08)),
