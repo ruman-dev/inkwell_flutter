@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Inkwell',
       debugShowCheckedModeBanner: false,
       theme: AppThemes.darkTheme,
+      darkTheme: AppThemes.darkTheme,
       themeMode: ThemeMode.dark,
       initialRoute: initialRoute,
       getPages: pages,

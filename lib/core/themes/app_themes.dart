@@ -17,18 +17,6 @@ class AppThemes {
         error: Colors.redAccent,
       ),
 
-      /// Typography
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(
-          color: Colors.white,
-          fontSize: 30,
-          fontWeight: FontWeight.w700,
-          letterSpacing: -.5,
-        ),
-        bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
-        bodyMedium: TextStyle(color: Color(0xFF9E9E9E), fontSize: 15),
-      ),
-
       /// Input Decoration
       inputDecorationTheme: InputDecorationTheme(
         filled: true,

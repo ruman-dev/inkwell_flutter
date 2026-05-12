@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/features/home/presentation/controllers/add_new_task_controller.dart';
@@ -141,15 +142,20 @@ class AddNewTaskScreen extends GetView<AddNewTaskController> {
               const SizedBox(height: 36),
 
               /// Save Button
-              ElevatedButton(
-                onPressed: () => Get.back(),
-                child: const Text(
-                  'Create Task',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              Obx(
+                () => ElevatedButton.icon(
+                  onPressed: controller.isLoading.value
+                      ? null
+                      : () => controller.createTask(),
+                  label: const Text(
+                    'Create Task',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                  icon: controller.isLoading.value
+                      ? const CupertinoActivityIndicator()
+                      : const Icon(Icons.add),
                 ),
               ),
-
-              const SizedBox(height: 24),
             ],
           ),
         ),
