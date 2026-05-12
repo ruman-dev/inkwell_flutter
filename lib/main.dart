@@ -1,8 +1,9 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:get/get.dart';
 import 'package:inkwell/core/routes/app_pages.dart';
 import 'package:inkwell/core/routes/app_routes.dart';
 import 'package:inkwell/core/themes/app_themes.dart';
@@ -25,14 +26,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Inkwell',
-      debugShowCheckedModeBanner: false,
-      theme: AppThemes.darkTheme,
-      darkTheme: AppThemes.darkTheme,
-      themeMode: ThemeMode.dark,
-      initialRoute: initialRoute,
-      getPages: pages,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          title: 'Inkwell',
+          debugShowCheckedModeBanner: false,
+          theme: AppThemes.darkTheme,
+          darkTheme: AppThemes.darkTheme,
+          themeMode: ThemeMode.dark,
+          initialRoute: initialRoute,
+          getPages: pages,
+        );
+      },
     );
   }
 }

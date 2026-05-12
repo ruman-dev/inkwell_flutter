@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/core/routes/app_routes.dart';
 import 'package:inkwell/features/auth/presentation/controllers/auth_controller.dart';
@@ -13,7 +14,7 @@ class HomeScreen extends GetView<HomeController> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -24,24 +25,24 @@ class HomeScreen extends GetView<HomeController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'My Notes',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 32,
+                          fontSize: 32.spMin,
                           fontWeight: FontWeight.w700,
                           letterSpacing: -.5,
                         ),
                       ),
 
-                      const SizedBox(height: 6),
+                      SizedBox(height: 6.h),
 
                       Obx(
                         () => Text(
                           '${controller.tasks.length} notes available',
                           style: TextStyle(
                             color: Colors.grey.shade500,
-                            fontSize: 15,
+                            fontSize: 15.spMin,
                           ),
                         ),
                       ),
@@ -55,12 +56,16 @@ class HomeScreen extends GetView<HomeController> {
                         Get.find<AuthController>().signOut();
                       }
                     },
-                    icon: const Icon(Icons.logout_rounded, color: Colors.white),
+                    icon: Icon(
+                      Icons.logout_rounded,
+                      color: Colors.white,
+                      size: 24.r,
+                    ),
                   ),
                 ],
               ),
 
-              const SizedBox(height: 28),
+              SizedBox(height: 28.h),
 
               /// Notes List
               Expanded(
@@ -73,7 +78,10 @@ class HomeScreen extends GetView<HomeController> {
                     return Center(
                       child: Text(
                         'No notes yet. Create one!',
-                        style: TextStyle(color: Colors.grey.shade600),
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 16.spMin,
+                        ),
                       ),
                     );
                   }
@@ -85,7 +93,7 @@ class HomeScreen extends GetView<HomeController> {
                     },
                     child: ListView.separated(
                       itemCount: controller.tasks.length,
-                      separatorBuilder: (_, _) => const SizedBox(height: 16),
+                      separatorBuilder: (_, _) => SizedBox(height: 16.h),
                       itemBuilder: (context, index) {
                         final note = controller.tasks[index];
 
@@ -98,12 +106,12 @@ class HomeScreen extends GetView<HomeController> {
                               );
                             }
                           },
-                          borderRadius: BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(24.r),
                           child: Container(
-                            padding: const EdgeInsets.all(18),
+                            padding: EdgeInsets.all(18.r),
                             decoration: BoxDecoration(
                               color: const Color(0xFF17181C),
-                              borderRadius: BorderRadius.circular(24),
+                              borderRadius: BorderRadius.circular(24.r),
                               border: Border.all(
                                 color: Colors.white.withValues(alpha: .04),
                               ),
@@ -113,14 +121,14 @@ class HomeScreen extends GetView<HomeController> {
                               children: [
                                 /// Completion Indicator
                                 Container(
-                                  margin: const EdgeInsets.only(top: 4),
-                                  height: 22,
-                                  width: 22,
+                                  margin: EdgeInsets.only(top: 4.h),
+                                  height: 22.r,
+                                  width: 22.r,
                                   decoration: BoxDecoration(
                                     color: note.isCompleted
                                         ? Colors.white
                                         : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.r),
                                     border: Border.all(
                                       color: note.isCompleted
                                           ? Colors.white
@@ -128,15 +136,15 @@ class HomeScreen extends GetView<HomeController> {
                                     ),
                                   ),
                                   child: note.isCompleted
-                                      ? const Icon(
+                                      ? Icon(
                                           Icons.check,
-                                          size: 14,
+                                          size: 14.r,
                                           color: Colors.black,
                                         )
                                       : null,
                                 ),
 
-                                const SizedBox(width: 16),
+                                SizedBox(width: 16.w),
 
                                 /// Note Content
                                 Expanded(
@@ -151,7 +159,7 @@ class HomeScreen extends GetView<HomeController> {
                                           color: note.isCompleted
                                               ? Colors.grey.shade500
                                               : Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 18.spMin,
                                           fontWeight: FontWeight.w600,
                                           decoration: note.isCompleted
                                               ? TextDecoration.lineThrough
@@ -159,7 +167,7 @@ class HomeScreen extends GetView<HomeController> {
                                         ),
                                       ),
 
-                                      const SizedBox(height: 10),
+                                      SizedBox(height: 10.h),
 
                                       /// Description
                                       Text(
@@ -167,7 +175,7 @@ class HomeScreen extends GetView<HomeController> {
                                         style: TextStyle(
                                           color: Colors.grey.shade500,
                                           height: 1.5,
-                                          fontSize: 14,
+                                          fontSize: 14.spMin,
                                         ),
                                       ),
                                     ],
@@ -194,7 +202,7 @@ class HomeScreen extends GetView<HomeController> {
           if (result == true) controller.getTasks();
         },
         backgroundColor: Colors.white,
-        child: const Icon(Icons.add_rounded, color: Colors.black, size: 28),
+        child: Icon(Icons.add_rounded, color: Colors.black, size: 28),
       ),
     );
   }

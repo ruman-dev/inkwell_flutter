@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/core/utils/validations.dart';
 import 'package:inkwell/features/auth/presentation/controllers/auth_controller.dart';
@@ -13,7 +14,7 @@ class AuthScreen extends GetView<AuthController> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
             child: Form(
               key: controller.formKey,
               child: Column(
@@ -21,23 +22,23 @@ class AuthScreen extends GetView<AuthController> {
                 children: [
                   /// Logo
                   Container(
-                    height: 60,
-                    width: 60,
+                    height: 60.r,
+                    width: 60.r,
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: .06),
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(18.r),
                       border: Border.all(
                         color: Colors.white.withValues(alpha: .08),
                       ),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.lock_outline_rounded,
                       color: Colors.white,
-                      size: 28,
+                      size: 28.r,
                     ),
                   ),
 
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
 
                   /// Title
                   Obx(
@@ -48,23 +49,31 @@ class AuthScreen extends GetView<AuthController> {
                             ? 'Welcome Back'
                             : 'Create Account',
                         key: ValueKey(controller.isLogin.value),
-                        style: Theme.of(context).textTheme.headlineLarge,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.spMin,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -.5,
+                        ),
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10.h),
 
                   Obx(
                     () => Text(
                       controller.isLogin.value
                           ? 'Login to continue'
                           : 'Create a new account to continue',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: TextStyle(
+                        color: const Color(0xFF9E9E9E),
+                        fontSize: 15.spMin,
+                      ),
                     ),
                   ),
 
-                  const SizedBox(height: 36),
+                  SizedBox(height: 36.h),
 
                   /// Name Field (Only for Register)
                   Obx(
@@ -75,7 +84,7 @@ class AuthScreen extends GetView<AuthController> {
                           : CrossFadeState.showSecond,
                       firstChild: const SizedBox.shrink(),
                       secondChild: Padding(
-                        padding: const EdgeInsets.only(bottom: 18),
+                        padding: EdgeInsets.only(bottom: 18.h),
                         child: TextFormField(
                           controller: controller.nameController,
                           validator: (value) {
@@ -104,7 +113,7 @@ class AuthScreen extends GetView<AuthController> {
                     ),
                   ),
 
-                  const SizedBox(height: 18),
+                  SizedBox(height: 18.h),
 
                   /// Password
                   Obx(
@@ -123,6 +132,7 @@ class AuthScreen extends GetView<AuthController> {
                                 ? Icons.visibility_off_rounded
                                 : Icons.visibility_rounded,
                             color: Colors.grey.shade400,
+                            size: 20.r,
                           ),
                         ),
                       ),
@@ -147,14 +157,17 @@ class AuthScreen extends GetView<AuthController> {
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.grey.shade400,
                                 ),
-                                child: const Text('Forgot Password?'),
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(fontSize: 14.spMin),
+                                ),
                               ),
                             )
-                          : const SizedBox(height: 14),
+                          : SizedBox(height: 14.h),
                     ),
                   ),
 
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
                   /// Button
                   Obx(
@@ -168,29 +181,33 @@ class AuthScreen extends GetView<AuthController> {
                             },
                       label: Text(
                         controller.isLogin.value ? 'Login' : 'Create Account',
+                        style: TextStyle(fontSize: 16.spMin),
                       ),
                       icon: controller.isLoading.value
                           ? const CupertinoActivityIndicator()
                           : const SizedBox.shrink(),
                     ),
                   ),
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
 
                   /// Divider
                   Row(
                     children: [
                       const Expanded(child: Divider()),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
                         child: Text(
                           'OR',
-                          style: TextStyle(color: Colors.grey.shade600),
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 12.spMin,
+                          ),
                         ),
                       ),
                       const Expanded(child: Divider()),
                     ],
                   ),
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
 
                   /// Toggle Auth Mode
                   Center(
@@ -202,9 +219,10 @@ class AuthScreen extends GetView<AuthController> {
                             text: controller.isLogin.value
                                 ? "Don't have an account? "
                                 : "Already have an account? ",
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.copyWith(fontSize: 14),
+                            style: TextStyle(
+                              color: const Color(0xFF9E9E9E),
+                              fontSize: 14.spMin,
+                            ),
                             children: [
                               TextSpan(
                                 text: controller.isLogin.value
