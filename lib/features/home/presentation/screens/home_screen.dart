@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/core/routes/app_routes.dart';
@@ -65,9 +66,7 @@ class HomeScreen extends GetView<HomeController> {
               Expanded(
                 child: Obx(() {
                   if (controller.isLoading.value) {
-                    return const Center(
-                      child: CircularProgressIndicator(color: Colors.white),
-                    );
+                    return const Center(child: CupertinoActivityIndicator());
                   }
 
                   if (controller.tasks.isEmpty) {
@@ -79,100 +78,107 @@ class HomeScreen extends GetView<HomeController> {
                     );
                   }
 
-                  return ListView.separated(
-                    itemCount: controller.tasks.length,
-                    separatorBuilder: (_, _) => const SizedBox(height: 16),
-                    itemBuilder: (context, index) {
-                      final note = controller.tasks[index];
+                  return RefreshIndicator(
+                    color: Colors.white,
+                    onRefresh: () async {
+                      await controller.getTasks();
+                    },
+                    child: ListView.separated(
+                      itemCount: controller.tasks.length,
+                      separatorBuilder: (_, _) => const SizedBox(height: 16),
+                      itemBuilder: (context, index) {
+                        final note = controller.tasks[index];
 
-                      return InkWell(
-                        onTap: () {
-                          if (note.id != null) {
-                            controller.toggleTaskStatus(
-                              note.id!,
-                              note.isCompleted,
-                            );
-                          }
-                        },
-                        borderRadius: BorderRadius.circular(24),
-                        child: Container(
-                          padding: const EdgeInsets.all(18),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF17181C),
-                            borderRadius: BorderRadius.circular(24),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: .04),
+                        return InkWell(
+                          onTap: () {
+                            if (note.id != null) {
+                              controller.toggleTaskStatus(
+                                note.id!,
+                                note.isCompleted,
+                              );
+                            }
+                          },
+                          borderRadius: BorderRadius.circular(24),
+                          child: Container(
+                            padding: const EdgeInsets.all(18),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF17181C),
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: .04),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              /// Completion Indicator
-                              Container(
-                                margin: const EdgeInsets.only(top: 4),
-                                height: 22,
-                                width: 22,
-                                decoration: BoxDecoration(
-                                  color: note.isCompleted
-                                      ? Colors.white
-                                      : Colors.transparent,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                /// Completion Indicator
+                                Container(
+                                  margin: const EdgeInsets.only(top: 4),
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
                                     color: note.isCompleted
                                         ? Colors.white
-                                        : Colors.grey.shade700,
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: note.isCompleted
+                                          ? Colors.white
+                                          : Colors.grey.shade700,
+                                    ),
+                                  ),
+                                  child: note.isCompleted
+                                      ? const Icon(
+                                          Icons.check,
+                                          size: 14,
+                                          color: Colors.black,
+                                        )
+                                      : null,
+                                ),
+
+                                const SizedBox(width: 16),
+
+                                /// Note Content
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      /// Title
+                                      Text(
+                                        note.title,
+                                        style: TextStyle(
+                                          color: note.isCompleted
+                                              ? Colors.grey.shade500
+                                              : Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          decoration: note.isCompleted
+                                              ? TextDecoration.lineThrough
+                                              : null,
+                                        ),
+                                      ),
+
+                                      const SizedBox(height: 10),
+
+                                      /// Description
+                                      Text(
+                                        note.description,
+                                        style: TextStyle(
+                                          color: Colors.grey.shade500,
+                                          height: 1.5,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                child: note.isCompleted
-                                    ? const Icon(
-                                        Icons.check,
-                                        size: 14,
-                                        color: Colors.black,
-                                      )
-                                    : null,
-                              ),
-
-                              const SizedBox(width: 16),
-
-                              /// Note Content
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    /// Title
-                                    Text(
-                                      note.title,
-                                      style: TextStyle(
-                                        color: note.isCompleted
-                                            ? Colors.grey.shade500
-                                            : Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        decoration: note.isCompleted
-                                            ? TextDecoration.lineThrough
-                                            : null,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 10),
-
-                                    /// Description
-                                    Text(
-                                      note.description,
-                                      style: TextStyle(
-                                        color: Colors.grey.shade500,
-                                        height: 1.5,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   );
                 }),
               ),
