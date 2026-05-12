@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inkwell/core/routes/app_routes.dart';
 
 class AuthController extends GetxController {
   final emailController = TextEditingController();
@@ -21,7 +22,7 @@ class AuthController extends GetxController {
   }
 
   void submit() {
-    // Handle form submission
+    Get.offAndToNamed(AppRoutes.home);
   }
 
   @override

@@ -14,7 +14,7 @@ class AppThemes {
         surface: Color(0xFF1D1E22),
         secondary: Colors.grey,
       ),
-      
+
       /// Typography
       textTheme: const TextTheme(
         headlineLarge: TextStyle(
@@ -23,10 +23,7 @@ class AppThemes {
           fontWeight: FontWeight.w700,
           letterSpacing: -.5,
         ),
-        bodyLarge: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-        ),
+        bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
         bodyMedium: TextStyle(
           color: Color(0xFF9E9E9E), // Colors.grey.shade500
           fontSize: 15,
@@ -49,11 +46,11 @@ class AppThemes {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
-          borderSide: BorderSide(color: Colors.white.withOpacity(.04)),
+          borderSide: BorderSide(color: Colors.white.withValues(alpha: .04)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
-          borderSide: BorderSide(color: Colors.white.withOpacity(.12)),
+          borderSide: BorderSide(color: Colors.white.withValues(alpha: .12)),
         ),
       ),
 
@@ -67,32 +64,26 @@ class AppThemes {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
-      
+
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          side: BorderSide(color: Colors.white.withOpacity(.08)),
+          side: BorderSide(color: Colors.white.withValues(alpha: .08)),
           backgroundColor: const Color(0xFF1D1E22),
           minimumSize: const Size(double.infinity, 56),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
           foregroundColor: Colors.white,
-          textStyle: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
+          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
         ),
       ),
 
       /// Divider Theme
       dividerTheme: DividerThemeData(
-        color: Colors.white.withOpacity(.08),
+        color: Colors.white.withValues(alpha: .08),
         thickness: 1,
       ),
     );

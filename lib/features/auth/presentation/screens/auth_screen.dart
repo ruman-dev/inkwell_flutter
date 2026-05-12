@@ -124,7 +124,12 @@ class AuthScreen extends GetView<AuthController> {
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.snackbar(
+                                  'Coming soon',
+                                  'This feature is not yet implemented.',
+                                );
+                              },
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.grey.shade400,
                               ),
