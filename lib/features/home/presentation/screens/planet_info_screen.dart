@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -121,7 +122,7 @@ class PlanetInfoScreen extends GetView<PlanetInfoController> {
                     ),
                     SizedBox(width: 12.w),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => controller.fetchPlanetInfo(),
                       child: Container(
                         height: 56.h,
                         width: 56.h,
@@ -174,9 +175,7 @@ class PlanetInfoScreen extends GetView<PlanetInfoController> {
               Expanded(
                 child: Obx(() {
                   if (controller.isLoading.value) {
-                    return const Center(
-                      child: CupertinoActivityIndicator(color: Colors.white),
-                    );
+                    return const Center(child: CupertinoActivityIndicator());
                   }
 
                   if (controller.errorMessage.value.isNotEmpty) {
@@ -209,10 +208,12 @@ class PlanetInfoScreen extends GetView<PlanetInfoController> {
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: controller.mediaType.value == "image"
-                              ? Image.network(
-                                  controller.mediaUrl.value,
+                              ? CachedNetworkImage(
+                                  imageUrl: controller.mediaUrl.value,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (_, _, _) => Center(
+                                  memCacheWidth: 250.w.toInt(),
+                                  memCacheHeight: 250.h.toInt(),
+                                  errorWidget: (_, _, _) => Center(
                                     child: Icon(
                                       Icons.broken_image_rounded,
                                       color: Colors.grey,
@@ -263,7 +264,6 @@ class PlanetInfoScreen extends GetView<PlanetInfoController> {
                             fontSize: 15.spMin,
                           ),
                         ),
-                        SizedBox(height: 40.h),
                       ],
                     ),
                   );
