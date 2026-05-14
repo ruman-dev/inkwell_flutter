@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:inkwell/features/home/presentation/controllers/planet_info_controller.dart';
+import 'package:inkwell/features/home/presentation/widgets/planet_video_player.dart';
 import 'package:intl/intl.dart';
 
 class PlanetInfoScreen extends GetView<PlanetInfoController> {
@@ -221,12 +222,9 @@ class PlanetInfoScreen extends GetView<PlanetInfoController> {
                                     ),
                                   ),
                                 )
-                              : Center(
-                                  child: Icon(
-                                    Icons.play_circle_fill_rounded,
-                                    color: Colors.white,
-                                    size: 70.r,
-                                  ),
+                              : PlanetVideoPlayer(
+                                  videoUrl: controller.mediaUrl.value,
+                                  key: ValueKey(controller.mediaUrl.value),
                                 ),
                         ),
 

@@ -20,7 +20,7 @@ class PlanetModel {
   factory PlanetModel.fromJson(Map<String, dynamic> json) => PlanetModel(
     date: DateTime.parse(json["date"]),
     explanation: json["explanation"],
-    hdurl: json["hdurl"],
+    hdurl: json["hdurl"] ?? "",
     mediaType: json["media_type"],
     serviceVersion: json["service_version"],
     title: json["title"],
