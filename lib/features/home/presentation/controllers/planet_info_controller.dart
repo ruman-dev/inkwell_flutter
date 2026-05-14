@@ -13,7 +13,7 @@ class PlanetInfoController extends GetxController {
   final mediaUrl = "".obs;
   final explanation = "".obs;
 
-  final repository = PlanetRepositoryImpl();
+  final _repository = PlanetRepositoryImpl();
 
   @override
   void onInit() {
@@ -52,7 +52,7 @@ class PlanetInfoController extends GetxController {
     isLoading.value = true;
     errorMessage.value = '';
 
-    final result = await repository.fetchPlanetInfo(date: selectedDate.value);
+    final result = await _repository.fetchPlanetInfo(date: selectedDate.value);
 
     result.fold(
       (planet) {
