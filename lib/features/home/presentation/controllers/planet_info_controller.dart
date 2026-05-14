@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:inkwell/features/home/data/repository/planet_repository_impl.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PlanetInfoController extends GetxController {
   final selectedDate = DateTime.now().obs;
@@ -69,14 +68,5 @@ class PlanetInfoController extends GetxController {
         isLoading.value = false;
       },
     );
-  }
-
-  Future<void> launchVideoUrl() async {
-    final url = Uri.parse(mediaUrl.value);
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      Get.snackbar('Error', 'Could not launch video URL');
-    }
   }
 }
