@@ -48,19 +48,32 @@ class HomeScreen extends GetView<HomeController> {
                       ),
                     ],
                   ),
-                  IconButton(
-                    onPressed: () {
-                      if (!Get.isRegistered<AuthController>()) {
-                        Get.put(AuthController()).signOut();
-                      } else {
-                        Get.find<AuthController>().signOut();
-                      }
-                    },
-                    icon: Icon(
-                      Icons.logout_rounded,
-                      color: Colors.white,
-                      size: 24.r,
-                    ),
+                  Row(
+                    spacing: 10.w,
+                    children: [
+                      IconButton(
+                        onPressed: () => Get.toNamed(AppRoutes.planetInfo),
+                        icon: Icon(
+                          Icons.public_outlined,
+                          color: Colors.white,
+                          size: 24.r,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          if (!Get.isRegistered<AuthController>()) {
+                            Get.put(AuthController()).signOut();
+                          } else {
+                            Get.find<AuthController>().signOut();
+                          }
+                        },
+                        icon: Icon(
+                          Icons.logout_rounded,
+                          color: Colors.white,
+                          size: 24.r,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

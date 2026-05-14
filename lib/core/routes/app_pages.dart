@@ -5,6 +5,7 @@ import 'package:inkwell/features/auth/presentation/screens/auth_screen.dart';
 import 'package:inkwell/features/home/presentation/bindings/home_bindings.dart';
 import 'package:inkwell/features/home/presentation/screens/add_new_task_screen.dart';
 import 'package:inkwell/features/home/presentation/screens/home_screen.dart';
+import 'package:inkwell/features/home/presentation/screens/planet_info_screen.dart';
 
 final List<GetPage> pages = [
   GetPage(
@@ -20,6 +21,11 @@ final List<GetPage> pages = [
   GetPage(
     name: AppRoutes.addNewTask,
     page: () => const AddNewTaskScreen(),
+    binding: HomeBindings(),
+  ),
+  GetPage(
+    name: AppRoutes.planetInfo,
+    page: () => const PlanetInfoScreen(),
     binding: HomeBindings(),
   ),
 ];
