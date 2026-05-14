@@ -246,7 +246,9 @@ class PlanetInfoScreen extends GetView<PlanetInfoController> {
 
                         /// Date
                         Text(
-                          controller.dateStr.value,
+                          DateFormat(
+                            'EEEE, MMMM d, yyyy',
+                          ).format(controller.selectedDate.value),
                           style: TextStyle(
                             color: Colors.grey.shade500,
                             fontSize: 14.spMin,

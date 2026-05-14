@@ -11,7 +11,6 @@ class AuthRepositoryImpl implements AuthRepository {
     String password,
   ) async {
     try {
-      print("Sign In: $email + $password");
       final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -21,7 +20,6 @@ class AuthRepositoryImpl implements AuthRepository {
     } on FirebaseAuthException catch (e) {
       return Right(Failure(message: e.message ?? "Authentication failed"));
     } catch (e) {
-      print("Sign In Error: $e");
       return Right(Failure(message: "Something went wrong. Please try again."));
     }
   }
@@ -33,7 +31,6 @@ class AuthRepositoryImpl implements AuthRepository {
     String password,
   ) async {
     try {
-      print("Sign Up: $email + $password");
       final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -59,7 +56,6 @@ class AuthRepositoryImpl implements AuthRepository {
     } on FirebaseAuthException catch (e) {
       return Right(Failure(message: e.message ?? "Account creation failed"));
     } catch (e) {
-      print("Sign Up Error: $e");
       return Right(Failure(message: "Something went wrong. Please try again."));
     }
   }
